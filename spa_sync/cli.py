@@ -4,7 +4,7 @@ from spa_api import write
 
 
 def main():
-    parser = ArgumentParser()
+    parser = ArgumentParser(description='Linksys/Sipura SPA IP Phone Sync')
 
     parser.add_argument('ip', help='SPA Phone IP Address')
 

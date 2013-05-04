@@ -27,7 +27,7 @@ else:
 
 setup(
     name='spa-sync',
-    version='0.1.0dev',
+    version='0.1.0',
     author='Bouke Haarsma',
     author_email='bouke@webatoom.nl',
     packages=find_packages(),
