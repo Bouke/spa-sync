@@ -40,7 +40,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'spa-sync = spa_sync:main',
+            'spa-sync = spa_sync.cli:main',
         ],
     },
     classifiers=[
