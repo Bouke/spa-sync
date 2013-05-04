@@ -10,12 +10,16 @@ def main():
 
     if sys.platform == 'darwin':
         parser.add_argument('--contacts', action='append', nargs='?',
-                            help='Read from OSX Contacts and specify an optional '
-                                 'GROUP', metavar='GROUP')
+                            help='read from OSX Contacts and specify an '
+                                 'optional GROUP', metavar='GROUP')
     elif sys.platform == 'win32':
         parser.add_argument('--outlook', action='append', nargs='?',
-                            help='Read from MS Outlook and specify an optional '
-                                 'GROUP', metavar='GROUP')
+                            help='read from MS Outlook and specify an '
+                                 'optional GROUP', metavar='GROUP')
+
+    parser.add_argument('--highrise', action='append', nargs=2,
+                        help='read from Highrise HQ, specify your server '
+                             'name and API KEY', metavar=('NAME', 'KEY'))
 
     args = parser.parse_args()
 
@@ -30,6 +34,11 @@ def main():
         from spa_sync.providers import outlook
         for group in args.outlook:
             entries += outlook.export(group)
+
+    if args.highrise:
+        from spa_sync.providers import highrise
+        for name, key in args.highrise:
+            entries += highrise.export(name, key)
 
     write(args.ip, entries)
     print 'Synced', len(entries), 'entries'
